@@ -19,9 +19,18 @@ h2 {
   color: #66bfbf;
 }
 
+hr {
+  border-style: none;
+  border-top-style: dotted;
+  border-color: #eaf6f6;
+  border-width: 8px;
+  width: 5%;
+}
+
 h3 {
   font-family: "Montserrat", sans-serif;
   color: #11999e;
+  font-weight: bold;
 }
 
 a {
@@ -29,9 +38,28 @@ a {
 }
 
 .top-container {
-  background-color: cornflowerblue;
+  background-color: #eaf6f6;
   position: relative;
   padding-top: 100px;
+}
+
+.bottom-container {
+  background-color: #66bfbf;
+}
+
+.copyright {
+  color: #eaf6f6;
+}
+
+.profile {
+  margin: 75px auto;
+}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto;
+  text-align: left;
+  line-height: 2;
 }
 
 .top-cloud {
@@ -48,4 +76,16 @@ a {
 
 .profile-picture {
   width: 300px;
+}
+
+.instructor-img {
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+}
+
+.beer-img {
+  width: 25%;
+  float: right;
+  margin-left: 30px;
 }
