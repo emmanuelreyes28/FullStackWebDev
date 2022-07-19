@@ -9,6 +9,7 @@ for (let i = 0; i < button.length; i++) {
 function clickMe() {
   let buttonInnerHTML = this.innerHTML;
   makeSound(buttonInnerHTML);
+  buttonAnimation(buttonInnerHTML);
 }
 
 //Detecting keyboard press
@@ -17,6 +18,7 @@ document.addEventListener("keydown", function (event) {
   // listen for any and all key presses so no need to create for loop
   // key.event gives us the key that was pressed
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -61,5 +63,14 @@ function makeSound(key) {
   }
 }
 
-// let tom1 = new Audio("sounds/tom-1.mp3");
-// tom1.play();
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector("." + currentKey);
+
+  // add .pressed class to button that was pressed
+  activeButton.classList.add("pressed");
+
+  // make animation disapper after being clicked by using timeout function
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
