@@ -41,3 +41,27 @@ $("body").keypress(function (event) {
 $("h1").on("mouseover", function () {
   $("h1").css("color", "blue");
 });
+
+//use jQuery to add and remove elements on the fly
+/**
+ * before() - add element before item that is selected
+ * after() - add element after item that is selected
+ * prepend()- add element into the item that is selected just right before
+ * append() -  add element into the item that is selected after it
+ */
+
+$("h1").before("<button>New</button>");
+
+$("h1").after("<button>New</button>");
+
+$("h1").prepend("<button>New</button>");
+
+$("h1").append("<button>New</button>");
+
+//remove elements with jQuery
+//$("button").remove(); // removes all button on page
+
+//animate with jQuery
+$("button").on("click", function () {
+  $("h1").slideUp().slideDown().animate({ opacity: 0.5 });
+});
