@@ -1,0 +1,9 @@
+ls - lists items within current folder
+cd - change directory (enter path)
+~ - go to root folder
+.. - go back to previous folder in path
+Hold option/alt - choose where you want to edit with cursor
+control + a - go to beginning of command line
+control + e = go to end of command line
+control + u - clear current command 
+up/down arrow - cycle through previous commands 
