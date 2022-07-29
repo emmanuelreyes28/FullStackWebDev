@@ -7,3 +7,16 @@ control + a - go to beginning of command line
 control + e = go to end of command line
 control + u - clear current command 
 up/down arrow - cycle through previous commands 
+
+-- Creating, Opening and Removing Files through the Command Line -- 
+
+mkdir (make directory) - create new folder
+touch [name of file] - to create a new file
+open [filename] - opens file
+open -a [application] [filename] - open file in given application
+rm [filename] - deletes file
+rm * - delete all the files within given directory
+pwd (print working directory) - check what directory you are in
+rm -r [folder] - remove folder and all the contents in it 
+
+https://www.learnenough.com/command-line-tutorial
