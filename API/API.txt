@@ -1,0 +1,17 @@
+What is an API?
+
+An API is an Application Programming Interface (API) is a set of commands, functions, protocols and objects that programmers can use to create software or interact with an external system.
+
+In Layman's terms an API is something that gives you access to a variety of functions and objects that let you create software. For example, jQuery is an API.
+
+Can be used to interact data from other websites such as Facebook (Meta). 
+
+Endpoint: 
+
+Paths 
+
+Parameters
+
+Authentication 
+
+https://sv443.net/jokeapi/v2/
