@@ -14,4 +14,11 @@ Parameters
 
 Authentication 
 
+Postman can be used for APIs to easily structure path 
+
 https://sv443.net/jokeapi/v2/
+
+--- JSON ---
+
+JSON stands for JavaScript Object Notation
+
