@@ -1,12 +1,29 @@
 const express = require("express");
 const https = require("https"); //native node no need for npm install
+const bodyParser = require("body-parser"); //allows to look through body of post request and fetrch data from input
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: "true" }));
+
 // can only have one send within a given app method but can have multiple writes
 app.get("/", function (req, res) {
+  //when user is in rooot route direct them to index.html page
+  res.sendFile(__dirname + "/index.html");
+});
+
+//catches post request in root route
+app.post("/", function (req, res) {
+  const query = req.body.cityName;
+  const apiKey = "e0510037a8dda7f1b676abfb08e30234";
+  const unit = "imperial";
   const url =
-    "https://api.openweathermap.org/data/2.5/weather?q=London&appid=e0510037a8dda7f1b676abfb08e30234&units=imperial";
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    query +
+    "&appid=" +
+    apiKey +
+    "&units=" +
+    unit;
   //grab json data from get request to api
   https.get(url, function (response) {
     console.log(response.statusCode);
@@ -20,16 +37,14 @@ app.get("/", function (req, res) {
       const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
       res.write("<p>The weather is currently " + description + "</p>");
       res.write(
-        "<h1>The temperature in London is " + temp + " degrees Faranheit.</h1>"
+        "<h1>The temperature in " +
+          query +
+          " is " +
+          temp +
+          " degrees Faranheit.</h1>"
       );
       res.write("<img src=" + imgURL + ">");
       res.send();
-      //   const object = {
-      //     name: "Emmanuel",
-      //     favoriteFood: "burger",
-      //   };
-      //   //stringify takes a JSON object and turns it into a string
-      //   console.log(JSON.stringify(object));
     });
   });
 });
