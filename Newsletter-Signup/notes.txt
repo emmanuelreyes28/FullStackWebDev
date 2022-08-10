@@ -7,3 +7,18 @@ Enter the following in CLI:
     git push heroku master (updates website with changes)
 
 Use command heroku logs when any errors occurr 
+
+Creating new project:
+
+1. Make new directory (mkdir) with project name
+2. cd into new project folder
+3. touch app.js (and/any other files such as html files)
+4. Initialize nom with npm init
+5. Install body-parser, express and request nmp modules
+    npm i body-parser exprees request
+6. Require the newly installed moules inside app.js
+7. Create a new express app and set it to listen on port 3000
+8. Once port is set up, log "server is running on port 3000"
+9. Use Heroku to host site. reference https://devcenter.heroku.com/articles/getting-started-with-nodejs#prepare-the-app
+
+
