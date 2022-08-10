@@ -1,6 +1,7 @@
 const request = require("request");
 const express = require("express");
 const bodyParser = require("body-parser");
+const https = require("https");
 
 const app = express();
 app.use(express.static("public")); //can refer to static files using a relative url
@@ -12,13 +13,53 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-  let firstName = req.body.fName;
-  let lastName = req.body.lName;
-  let email = req.body.email;
+  const firstName = req.body.fName;
+  const lastName = req.body.lName;
+  const email = req.body.email;
 
-  console.log(firstName, lastName, email);
+  // data used to send post request to mailchimp and subscribe user
+  let data = {
+    members: [
+      //body parameter from mailChimp API
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName,
+        },
+      },
+    ],
+  };
+
+  //turn js object to flatpack JSON
+  let jsonData = JSON.stringify(data);
+
+  const url = "https://us8.api.mailchimp.com/3.0/lists/8576d9a8aa";
+
+  const options = {
+    method: "POST",
+    auth: "emmanuel:b0ea4aa80d2ed58ce62c3192208dada0-us8",
+  };
+
+  //make post request to mailchimp using user data entered to sign up page
+  const request = https.request(url, options, function (response) {
+    response.on("data", function (data) {
+      console.log(JSON.parse(data));
+    });
+  });
+
+  //pass data to mailchimp server and end request
+  request.write(jsonData);
+  request.end();
 });
 
 app.listen(3000, function () {
   console.log("Server is running on port 3000");
 });
+
+//API Key
+// b0ea4aa80d2ed58ce62c3192208dada0-us8
+
+//audience id
+// 8576d9a8aa
