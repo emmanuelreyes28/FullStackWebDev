@@ -1,0 +1,9 @@
+Heroku is used to host your website on a server for free. Meaning anyone can access your site!
+
+When changes are made to any files. You have to make a new git commit to push those updates to Heroku
+Enter the following in CLI:
+    git add . (adds all the files from your project)
+    git commit -m "Type message here" (commits with message stating changes)
+    git push heroku master (updates website with changes)
+
+Use command heroku logs when any errors occurr 
