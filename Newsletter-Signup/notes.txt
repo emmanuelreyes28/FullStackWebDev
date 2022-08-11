@@ -21,4 +21,6 @@ Creating new project:
 8. Once port is set up, log "server is running on port 3000"
 9. Use Heroku to host site. reference https://devcenter.heroku.com/articles/getting-started-with-nodejs#prepare-the-app
 
-
+Additional Notes:
+GET request - receiving data from API
+POST request - sending data to API 

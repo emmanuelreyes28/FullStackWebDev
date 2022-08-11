@@ -1,0 +1,31 @@
+Create git local repo:
+* git init (make sure you are in the correct directory/working directory)
+
+Staging Area - is an intermediate place where you can pick and choose which files you want to commit
+
+Use "git status" to see what is in the staging area / shows untracked files
+
+git add [filename or .(all files)] --> added to the staging and is ready to be committed
+
+Committing --> git commit -m <"Write message here>
+Note: commit messages should be written in the present tense
+
+ls -a --> shows all hidden files in current directory
+git log --> shows the logs of changes made 
+
+Commit file(s) to local repository using git commit
+
+					^
+					|					
+
+Add file(s) using git add which adds files to the staging area where they prepare for commit
+
+					^
+					|
+
+Create file in working directory which is the directory where git was initialized(git init)
+
+File(s) can be rollbacked to last position in local repo by using git checkout [filename]
+
+Check what changes were made in a file by using ==> git diff [filename]
+
