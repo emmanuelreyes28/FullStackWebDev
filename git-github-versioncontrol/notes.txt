@@ -44,5 +44,22 @@ Pushing an existing local repository onto a remote repository (GitHub)
 
 Working directory -> Staging Area -> Local Repo(master branch) -> Remote Repo(GitHub)
 
+*gitignore*
+
+Gitignore file is used to ignore files that should not be pushed onto a public repo
+For example, api keys, ds_store, etc. 
+
+To create ,gitignore file use --> touch .gitignore
+The "." Means this will be a hidden file\
+
+Write the file names that you want to ignore within .gitignore file
+Note you can use *.<extension> to ignore all files that end with that extension
+
+For a useful list of gitignore templates go to gitHub.com/github/gitignore
+
+To remove files from the staging area use --> git rm --cached -r [filename or .]
+
+
+
 
 
