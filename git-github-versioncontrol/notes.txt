@@ -59,7 +59,44 @@ For a useful list of gitignore templates go to gitHub.com/github/gitignore
 
 To remove files from the staging area use --> git rm --cached -r [filename or .]
 
+*cloning*
 
+To clone a remote repo into a local repo simply use --> git clone <github url repo>
+Note: make sure you are in the directory where you want to clone your repo
+
+view previous commits from cloned repository by using --> git logs
+
+*branching and merging*
+
+Most of the time you will see multiple branches being worked on at the same time on very large projects. 
+Reason: when adding new features or fixing bugs it may be break your project which is why you don't want to do it on the master branch. Only put on master branch once you have tested and you know that everything is working fine.
+
+
+To create a new branch use --> git branch <name of branch>
+
+To check what branches you have by using --> git branch
+Note: the asterisk represents the current branch that you are currently in 
+
+Switch to a branch by using --> git checkout <name of branch>
+
+Once you have made changes on the chosen branch do the following:
+	git add .
+	git commit -m "write commit message here"
+
+
+To merge a branch onto the master branch go back to master branch and use --> git merge <name of branch you want to merge>
+
+The line above open vim which lets you add a merge message if you wish.
+To save and quit vim use --> :q!
+
+To push onto remote repo use --> git push origin master -u 
+
+*forking and pull requests*
+
+Forking: to make a copy/duplicate of a remote repo and putting it under your own GitHub account.
+
+If someone makes changes to a repo that they have forked and want to implement those changes into the original repo that they forked then they will have to make a pull request. 
+Think about it as suggestions being made. If they okay the changes then they can merge it to their remote repo.
 
 
 
