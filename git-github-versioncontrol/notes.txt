@@ -95,7 +95,7 @@ To push onto remote repo use --> git push origin master -u
 
 Forking: to make a copy/duplicate of a remote repo and putting it under your own GitHub account.
 
-If someone makes changes to a repo that they have forked and want to implement those changes into the original repo that they forked then they will have to make a pull request. 
+If someone makes changes to a repo that they have forked and want to implement those changes into the original repo that they forked then they will have to make a pull request.
 Think about it as suggestions being made. If they okay the changes then they can merge it to their remote repo.
 
 

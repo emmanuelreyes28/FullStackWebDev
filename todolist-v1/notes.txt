@@ -1,0 +1,16 @@
+*Creating Templates with EJS*
+
+1. npm i ejs
+2. app.set('view engine', 'ejs');
+3. create a views folder
+4. within views folder create file called list.ejs
+5. write html code within list.ejs file
+6. use the following as marker to tell the file to replace whatever is inside the
+   marker with the value of the variable. marker --> <%= EJS %>
+7. res.render("name of ejs file", {marker variable name (key): current variable (value)});
+
+
+
+
+
+
