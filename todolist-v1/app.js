@@ -8,6 +8,7 @@ let items = ["Buy Food", "Cook Food", "Eat Food"]; //array to store items that a
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public")); //able to use static files
 
 app.get("/", function (req, res) {
   let today = new Date();
