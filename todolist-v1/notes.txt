@@ -9,6 +9,8 @@
    marker with the value of the variable. marker --> <%= EJS %>
 7. res.render("name of ejs file", {marker variable name (key): current variable (value)});
 
+Scriplet tag --> <%
+- use for control flow, no output (e.g. if statements and switch statements)
 
 
 

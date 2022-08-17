@@ -3,42 +3,36 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+let items = ["Buy Food", "Cook Food", "Eat Food"]; //array to store items that are to to-do list
+
 app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
   let today = new Date();
-  let currentDay = today.getDay();
-  let day = "";
 
-  switch (currentDay) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
+  let options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  };
 
-    default:
-      console.log("Error: current day is equal to: " + currentDay);
-      break;
-  }
+  let day = today.toLocaleDateString("en-US", options);
 
-  res.render("list", { kindOfDay: day });
+  //render dynamic variables that are going to be populated
+  res.render("list", { kindOfDay: day, newListItems: items });
+});
+
+app.post("/", function (req, res) {
+  let item = req.body.newItem;
+
+  //add new to do item to items array
+  items.push(item);
+
+  //cannot res.render() item like in get request bc newListItem is not defined when home route loads
+  //instead redirect to the home route once a new item has been added by user
+  res.redirect("/");
 });
 
 app.listen(3000, function () {
