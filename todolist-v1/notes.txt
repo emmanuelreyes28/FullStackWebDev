@@ -12,7 +12,12 @@
 Scriplet tag --> <%
 - use for control flow, no output (e.g. if statements and switch statements)
 
+You can give buttons a dynamic "value" to determine which list an item has been added to.
+Whether that be the original list or the work list.
+Use a conditional statement to determine which list the item belongs to by accessing req.body.[name of button] (specific to this project)
+Have the appropriate action take place.
 
-
+EJS Layout --> <%- include("name of layout") -%>
+You can create layouts with EJS which help keep cosistency across different web pages without having to repeat the same html code.
 
 
