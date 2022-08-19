@@ -20,4 +20,19 @@ Have the appropriate action take place.
 EJS Layout --> <%- include("name of layout") -%>
 You can create layouts with EJS which help keep cosistency across different web pages without having to repeat the same html code.
 
+Node Module Exports 
+- used to organize and maintain readable code using modules
+- modules can be accessed by requiring them in files (app.js) by using its path
+- if you want the module to do more than one thins, for example have multiple fuctions.
+   You can use module.exports.<name of function> = <anonymous function>
+- each module export will be assinged to a different function which then can be referenced in app.js
+   since module exports are Objects.
+- instead of using module exports we can write just exports which will be referring to module exports
 
+Note: when you call a js function without paranthesis it does not instantly run it.
+Sometimes we want this behavior like in the case of assigning a variable to a export module function.
+
+Note: when you create an array as a const variable it is still possible to push items into the array.
+      However, assigning a new array to the variable throws an error. Same applies to Objects.
+      You can change the value one of the values of one of the keys inside the object but you cannot 
+      assign the variable to a whole new different object.
