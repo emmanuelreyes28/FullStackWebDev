@@ -33,6 +33,14 @@ app.get("/compose", function(req, res){
   res.render("compose");
 })
 
+app.get("/posts/:postName", function(req, res){
+  //console.log(req.params.postName);
+  // const name = req.params.postName;
+  // posts.forEach(function(post){
+  //   if(name )
+  // });
+})
+
 app.post("/compose", function(req, res){
   const postTitle = req.body.postTitle;
   const postBody = req.body.postBody;
