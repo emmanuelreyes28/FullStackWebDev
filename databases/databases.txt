@@ -68,3 +68,5 @@ Delete data from products table:
 
 DELETE FROM products
 WHERE id = 2
+
+Relation Key: used to link tables together and establish relationships
