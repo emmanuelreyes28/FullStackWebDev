@@ -74,3 +74,23 @@ Relation Key: used to link tables together and establish relationships
 
 -- Mongo DB --
 1. Install MongoDb
+
+When exploring a new db system first thing to learn are CRUD operations
+Collections are documents and a document is a single data record which is equivalent to a single data row in sql
+
+mongod -  starts mongo server
+mongo - opens Mong shell (needs to be opened on separate terminal window)
+help - in mongo shell to show actions you can take
+
+Create db --> use <name of db>
+Shows what db you are currently in --> db
+Create data use --> db.collection.insertOne() or db.collection.insertMany()
+		    if collection does not already exists then it will be created 
+Check how many collections exist --> show collections
+
+Reading and Queries
+
+db.collection.find(query, projection) --> used to find data using queries
+					  query and projection are optional args
+When using projections 1 mean true and 0 means false
+
