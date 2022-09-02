@@ -94,3 +94,15 @@ db.collection.find(query, projection) --> used to find data using queries
 					  query and projection are optional args
 When using projections 1 mean true and 0 means false
 
+Update Data
+
+db.collection.updateOne(filter, update, options) --> used to update a single doc that a satisfies a condition
+db.collection.updateMany(filter, update, options)
+
+Delete Data
+
+db.collection.deleteOne(filter, option)
+db.collection.deleteMany(filter, option)
+
+Establish relationships in mongoDB - depends on how data is structured 
+Embedding a doc inside a doc
