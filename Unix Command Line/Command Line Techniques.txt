@@ -1,4 +1,4 @@
-ls - lists items within current folder
+Uls - lists items within current folder
 cd - change directory (enter path)
 ~ - go to root folder
 .. - go back to previous folder in path

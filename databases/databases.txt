@@ -73,7 +73,7 @@ Relation Key: used to link tables together and establish relationships
 
 
 -- Mongo DB --
-1. Install MongoDb
+1. Install MongoDb - macOS Monterey has diff installation process
 
 When exploring a new db system first thing to learn are CRUD operations
 Collections are documents and a document is a single data record which is equivalent to a single data row in sql
