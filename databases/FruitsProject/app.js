@@ -3,20 +3,45 @@ const { MongoClient } = require("mongodb");
 // Replace the uri string with your connection string.
 
 const uri = "mongodb://localhost:27017";
-//const uri ="mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {useUnifiedTopology: true});
 
+const dbName = "fruitsDB";
+
 async function run() {
   try {
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
+    await client.connect(function(){
+        console.log("connected successfully to server");
+    })
+    const database = client.db(dbName);
+    //get the documents collection
+    const collection = database.collection('fruits');
 
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
+    //documents to be insterted in fruitsDB
+    const docs = [
+        {
+          name: 'Apple',
+          score: 8,
+          review: "Great fruit"
+        },
+        {
+          name: "Orange",
+          score: 6,
+          review: "Kinda sour"
+        },
+        {
+          name: "Bananna",
+          score: 9,
+          review: "Great stuff!"
+        }
+    ];
 
-    console.log(movie);
+    const options = {ordered: true};
+
+    //insert some documents
+    const result = await collection.insertMany(docs, options);
+
+    console.log("documents were inserted");
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

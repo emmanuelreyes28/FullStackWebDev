@@ -106,3 +106,10 @@ db.collection.deleteMany(filter, option)
 
 Establish relationships in mongoDB - depends on how data is structured 
 Embedding a doc inside a doc
+
+Steps to check documents that were added to db from native mongo db driver using node js
+1. run mongosh
+2. show dbs
+3. use <name of db>
+4. Show collections
+5. db.collection.find()
