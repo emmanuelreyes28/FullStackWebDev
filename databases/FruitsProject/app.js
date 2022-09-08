@@ -5,7 +5,7 @@ run().catch(err => console.log(err));
 
 async function run(){
     // connect to mongo server and specify db that we want to create or connect to 
-    await mongoose.connect("mongodb://localhost:27017/personDB");
+    await mongoose.connect("mongodb://localhost:27017/fruitsDB");
 }
 
 // create scheman with properties
@@ -42,3 +42,30 @@ const person = new Person({
 });
 
 person.save();
+
+const kiwi = new Fruit({
+    name: "Kiwi",
+    score: 10,
+    review: "the best fruit!"
+});
+
+const orange = new Fruit({
+    name: "Orange",
+    score: 4,
+    review: "Too sour for me"
+});
+
+const banana = new Fruit({
+    name: "Banana",
+    score: 3,
+    review: "weird texture"
+});
+
+//insert fruit docs above using an array into Fruit model
+Fruit.insertMany([kiwi, orange, banana], function(err){
+    if(err){
+        console.log(err);
+    } else{
+        console.log("Successfully saved all the fruits to fruitDB");
+    }
+});
