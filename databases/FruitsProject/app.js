@@ -10,8 +10,15 @@ async function run(){
 
 // create scheman with properties
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: { //requires name to be passed and logs error message if fails
+        type: String,
+        required: [true, "please check your data entry, no name specified"]
+    },
+    rating: { //validates rating to be btwn 1 and 10
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
@@ -21,13 +28,12 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 
 // create a new fruit document
 const fruit = new Fruit({
-    name: "Apple",
-    rating: 7,
-    review: "pretty solid as a fruit."
+    rating: 10,
+    review: "peaches are so yummy"
 });
 
 // save fruit document in fruitDB
-//fruit.save()
+fruit.save()
 
 const personSchema = new mongoose.Schema({
     name: String,
@@ -41,25 +47,25 @@ const person = new Person({
     age: 37
 });
 
-person.save();
+// person.save();
 
-const kiwi = new Fruit({
-    name: "Kiwi",
-    score: 10,
-    review: "the best fruit!"
-});
+// const kiwi = new Fruit({
+//     name: "Kiwi",
+//     score: 10,
+//     review: "the best fruit!"
+// });
 
-const orange = new Fruit({
-    name: "Orange",
-    score: 4,
-    review: "Too sour for me"
-});
+// const orange = new Fruit({
+//     name: "Orange",
+//     score: 4,
+//     review: "Too sour for me"
+// });
 
-const banana = new Fruit({
-    name: "Banana",
-    score: 3,
-    review: "weird texture"
-});
+// const banana = new Fruit({
+//     name: "Banana",
+//     score: 3,
+//     review: "weird texture"
+// });
 
 //insert fruit docs above using an array into Fruit model
 // Fruit.insertMany([kiwi, orange, banana], function(err){
