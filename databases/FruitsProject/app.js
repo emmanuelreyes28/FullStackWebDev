@@ -62,10 +62,24 @@ const banana = new Fruit({
 });
 
 //insert fruit docs above using an array into Fruit model
-Fruit.insertMany([kiwi, orange, banana], function(err){
+// Fruit.insertMany([kiwi, orange, banana], function(err){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log("Successfully saved all the fruits to fruitDB");
+//     }
+// });
+
+// print all documents in fruitsDB wihtin app.js
+// use .find() callback function
+Fruit.find(function(err, fruits){
     if(err){
         console.log(err);
     } else{
-        console.log("Successfully saved all the fruits to fruitDB");
+        // close mongo connection takes about 10-15 sec
+        mongoose.connection.close();
+
+        // print each fruit name in fruits array
+        fruits.forEach(fruit => console.log(fruit.name));
     }
-});
+})
