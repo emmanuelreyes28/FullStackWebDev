@@ -33,19 +33,29 @@ const fruit = new Fruit({
 });
 
 // save fruit document in fruitDB
-fruit.save()
+//fruit.save()
 
 const personSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favoriteFruit: fruitSchema,
 });
 
 const Person = mongoose.model("Person", personSchema);
 
-const person = new Person({
-    name: "John",
-    age: 37
+const mango = new Fruit({
+    name: "Mango",
+    score: 10,
+    review: "juiciest fruit"
 });
+
+mango.save();
+
+// const person = new Person({
+//     name: "Amy",
+//     age: 12,
+//     favoriteFruit: pineapple
+// });
 
 // person.save();
 
@@ -87,5 +97,46 @@ Fruit.find(function(err, fruits){
 
         // print each fruit name in fruits array
         fruits.forEach(fruit => console.log(fruit.name));
+    }
+})
+
+//update doc that got added without the name peach before validation was implemented
+// Fruit.updateOne({_id: "631abc61443b895256d16c7b"}, {name: "Peach"}, function(err){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log("successfully updated the document");
+//     }
+// });
+
+// Fruit.deleteOne({name: "Peach"}, function(err){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log("successfully deleted document");
+//     }
+// });
+
+// Fruit.deleteOne({_id: "631abd65e1d0b5c267f60a31"}, function(err){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log("successfully deleted document");
+//     }
+// });
+
+// Person.deleteMany({name: "John"}, function(err){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log("successfullly deleted all Johns");
+//     }
+// });
+
+Person.updateOne({name: "John"}, {favoriteFruit: mango}, function(err){
+    if(err){
+        console.log(err);
+    } else{
+        console.log("successfully updated John doc");
     }
 })
