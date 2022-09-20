@@ -85,8 +85,9 @@ app.post("/delete", function(req, res){
   })
 })
 
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
+//dynamic routes with expressjs
+app.get("/:customListName", function(req, res){
+  console.log(req.params.customListName);
 });
 
 app.get("/about", function(req, res){
