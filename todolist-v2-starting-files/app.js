@@ -19,7 +19,7 @@ const itemSchema = {
   name: String,
 };
 
-//create mongoose model (note: mongoose model name should capitalized)
+//create mongoose model (note: mongoose model name should be capitalized)
 const Item = mongoose.model("Item", itemSchema);
 
 //create documents using model
@@ -29,6 +29,15 @@ const itemThree = new Item({name: "Workout"});
 
 //array of documents
 const defaultItems = [itemOne, itemTwo, itemThree];
+
+//listSchema will hold docs of to do lists 
+//for every new list created it will have a name and an array of items to do associated with that list
+const listSchema = {
+  name: String,
+  items: [itemSchema]
+}
+
+const List = mongoose.model("List", listSchema);
 
 app.get("/", function(req, res) {
 
@@ -85,9 +94,31 @@ app.post("/delete", function(req, res){
   })
 })
 
-//dynamic routes with expressjs
+//dynamic routes with expressjs to create new lists and load previous lists
 app.get("/:customListName", function(req, res){
-  console.log(req.params.customListName);
+  const customListName = req.params.customListName;
+
+  List.findOne({"name": customListName}, function(err, foundList){
+    if(!err){
+      if(!foundList){
+        //create new list
+        const list = new List({
+          name: customListName,
+          items: defaultItems
+        });
+      
+        list.save();
+        //redirect to route once new list is created
+        //default items will be populated within this new list
+        res.redirect("/" + customListName);
+      } else{
+        //show an existsing list 
+        res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
+      }
+    }
+  });
+
+  
 });
 
 app.get("/about", function(req, res){
