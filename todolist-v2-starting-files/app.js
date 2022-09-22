@@ -20,6 +20,7 @@ const itemSchema = {
 };
 
 //create mongoose model (note: mongoose model name should be capitalized)
+//Item model will be the default lists of items if a new item is added to the Today list aka root route then it can be found within this collection 
 const Item = mongoose.model("Item", itemSchema);
 
 //create documents using model
@@ -53,9 +54,10 @@ app.get("/", function(req, res) {
           console.log("Successfully uploaded documents to Items db");
         }
       });
-      //redirect to root route after default items have been added to dd; will fall in else case
+      //redirect to root route after default items have been added to db; will fall in else case
       res.redirect("/");
     } else{
+      //render list.ejs with given values 
       res.render("list", {listTitle: "Today", newListItems: foundItems});
     }
   });
@@ -67,15 +69,28 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res){
 
   const itemName = req.body.newItem;
+  const listName = req.body.list;
 
   //create new document when new to do is added to list
   const item = new Item({name: itemName});
 
-  //save new document to items collection 
-  item.save();
-
-  //redirect to root route to render items 
-  res.redirect("/");
+  //check if item trying to be added was to default list 
+  if(listName === "Today"){
+    //save new document to item collection 
+    item.save();
+    //redirect to root route to render items 
+    res.redirect("/");
+  } else{
+    //find custom list that is not the default list 
+    List.findOne({name: listName}, function(err, foundList){
+      //add new item to specified list 
+      foundList.items.push(item);
+      foundList.save();
+      //redirect to route with specified list name to update to do list
+      //which calls app.get("/:customListName")
+      res.redirect("/" + listName);
+    })
+  }
 });
 
 app.post("/delete", function(req, res){
@@ -107,12 +122,14 @@ app.get("/:customListName", function(req, res){
           items: defaultItems
         });
       
-        list.save();
-        //redirect to route once new list is created
-        //default items will be populated within this new list
-        res.redirect("/" + customListName);
+        list.save(function(){
+          //redirect to route once new list is created
+          //default items will be populated within this new list
+          res.redirect("/" + customListName);
+        });
       } else{
         //show an existsing list 
+        console.log(foundList.name);
         res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
       }
     }
@@ -128,3 +145,8 @@ app.get("/about", function(req, res){
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
+
+
+//Why does Today list not show in db?
+//We never create a new list called today but it still stores all default and new items being added
+//it seems like it stores the new items to the items collection rather than create a new doc with lists collections since it is the default list 
