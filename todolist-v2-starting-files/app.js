@@ -94,20 +94,35 @@ app.post("/", function(req, res){
 });
 
 app.post("/delete", function(req, res){
-  //grab item id from list.ejs
+  //store item id from list.ejs
   const checkedItemId = req.body.checkbox;
+  //store list name from list.ejs
+  const listName = req.body.listName;
 
-  //remove item selected from to do list
-  Item.findByIdAndRemove(checkedItemId, function(err){
-    if(err){
-      console.log(err);
-    } else{
-      console.log("Successfully removed item from collection");
-      //redirect to root route to update to do list
-      res.redirect("/");
-    }
-  })
-})
+  //check if list name is default list Today
+  if(listName === "Today"){
+    //remove item selected from to do list
+    Item.findByIdAndRemove(checkedItemId, function(err){
+      if(err){
+        console.log(err);
+      } else{
+        console.log("Successfully removed item from collection");
+        //redirect to root route to update to do list
+        res.redirect("/");
+      }
+    });
+  } else{
+    //use the following method to find specified listName in lists collection and update by pulling the item from that document's array of items using _id
+    List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: checkedItemId}}}, function(err, foundList){
+      if(!err){
+        //redirect to specified list to refresh/update to do list 
+        res.redirect("/" + listName);
+      }
+    })
+  }
+
+  
+});
 
 //dynamic routes with expressjs to create new lists and load previous lists
 app.get("/:customListName", function(req, res){
