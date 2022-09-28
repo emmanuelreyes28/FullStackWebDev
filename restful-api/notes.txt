@@ -1,0 +1,50 @@
+What is Rest?
+REpresentational 
+State
+Transfer
+
+
+--Client and Server Refresher--
+
+Client makes a request to the server -> server checks if this req can be fulfilled -> If so it'll do so. OTHERWISE, it'll return an error such as 404 
+
+When the server fulfills a req it responds with a result as seen in app.get(function(req, res){})
+
+Request are made through HTTP (Hyper Text Transfer Protocol) Request or FTP (File Transfer Protocol) Request
+
+HTTPS is a secure request that can be encrypted 
+
+By creating an API we are creating a menu that our server can respond to when the client make a request
+
+Client => API => Server (Completed by making an HTTP Request from Client)
+
+REST is an architectural style for designing APIs
+REST is the gold standard for web apis
+
+How do we make an API RESTful?
+- Use HTTP Request verbs
+- Use specific pattern of routes/endpoints URLs
+
+5 HTTP Verbs:
+- GET
+- POST 
+- PUT PATCH
+- DELETE 
+
+HTTP Verbs have similarities to CRUD (Create, Read, Update, Delete)
+
+1. GET is equivalent to READ
+   app.get(function(req, res){}) if the req involves something to our db then that requires searching through the db and returning the data as a result
+
+2. POST is equivalent to 
+   When data is posted to our server then we create an entry in our db and save that data for later
+
+3. PUT and PATCH are equivalent to UPDATE
+   They both update our db.
+   What is the difference between PUT and PATCH?
+	PUT: updates db by sending an entire new entry to replace existing entry 
+	PATCH: only send the piece of data that needs to be updated instead of the entire entry 
+
+4. DELETE is the same as DELETE
+   Deletes or destroys some data from db 
+   app.delete(function(req, res){})
