@@ -50,3 +50,9 @@ HTTP Verbs have similarities to CRUD (Create, Read, Update, Delete)
    app.delete(function(req, res){})
 
 Studio 3T previously is an app with a friendly ui to access mongodb and complete CRUD
+
+
+Postman can be used to send POST requests without having to build a front end
+1. Select POST and enter URL that you are posting to 
+2. Enter key and value under Body tab and select x-www-form-urlencoded
+3. Click Send
