@@ -21,8 +21,13 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+//////////////////////////////////Request Targeting All Articles//////////////////////////////////
+
+//chain route handlers
+app.route("/articles")
+
 //GET /articles route fetches all the articles from wikiDB's Article model 
-app.get("/articles", function(req, res){
+.get(function(req, res){
     //find function here does not take a condition bc we want to grab ALL articles 
     Article.find(function(err, foundArticles){
         if(!err){
@@ -33,11 +38,11 @@ app.get("/articles", function(req, res){
             res.send(err);
         }
     });
-}); 
+})
 
 //use postman to send data with post without having to build a front end
 //post new data requested to wikiDB with title and content key/values and save document to db
-app.post("/articles", function(req, res){
+.post(function(req, res){
 
     //create new article document using Article model
     const newArticle = new Article({
@@ -55,7 +60,56 @@ app.post("/articles", function(req, res){
             res.send(err);
         }
     });
+})
+
+//delete method used to delete articles from wikiDb
+.delete(function(req, res){
+    //delete ALL articles since there is no condition being used with deleteMany
+    Article.deleteMany(function(err){
+        if(!err){
+            //respond with success message
+            res.send("Successfully deleted all articles");
+        } else{
+            //responsd with error 
+            res.send(err);
+        }
+    });
 });
+
+//////////////////////////////////Request Targeting A Specific Article//////////////////////////////////
+
+app.route("/articles/:articleTitle")
+
+.get(function(req, res){
+    //get specified articles from param in url
+    Article.findOne({title: req.params.articleTitle}, function(err, foundArticle){
+        //if article found responsd with foundArticles
+        if(foundArticle){
+            res.send(foundArticle);
+        } else{
+            //otherwise respond with no articles found message
+            res.send("No articles matching that title was found.")
+        }
+    })
+})
+
+.put(function(req, res){
+    Article.findOneAndUpdate(
+        //find article that needs to be updated
+        {title: req.params.articleTitle},
+        //update found article with new contents
+        //note that if a title or content value is not given in the body then it will only update the data given and leave the null values empty in postman
+        {title: req.body.title, content: req.body.content},
+        {overwrite: true},
+        function(err){
+            //if no error respond with success message
+            if(!err){
+                res.send("Successfully updated article");
+            }
+        }
+    );
+});
+
 
 app.listen(3000, function(){
     console.log("Server started on port 3000");
