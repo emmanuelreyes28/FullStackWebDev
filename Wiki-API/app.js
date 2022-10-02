@@ -90,7 +90,7 @@ app.route("/articles/:articleTitle")
             //otherwise respond with no articles found message
             res.send("No articles matching that title was found.")
         }
-    })
+    });
 })
 
 .put(function(req, res){
@@ -98,13 +98,48 @@ app.route("/articles/:articleTitle")
         //find article that needs to be updated
         {title: req.params.articleTitle},
         //update found article with new contents
-        //note that if a title or content value is not given in the body then it will only update the data given and leave the null values empty in postman
+        //note that if a title or content value is not given in the body then it will only update the data given and leave the null values empty
+        //in other words completely replaces/overwrites the current data with the new data
         {title: req.body.title, content: req.body.content},
         {overwrite: true},
         function(err){
             //if no error respond with success message
             if(!err){
                 res.send("Successfully updated article");
+            } else{
+                res.send(err);
+            }
+        }
+    );
+})
+
+.patch(function(req, res){
+    //when a patch request is made it will parse it with bodyparser and update only the fields that have a new value
+    Article.updateOne(
+        {title: req.params.articleTitle},
+        //the $set operator replaces the value of a field with the specified value.
+        {$set: req.body},
+        function(err){
+            if(!err){
+                res.send("Successfully updated article");
+            } else{
+                res.send(err);
+            }
+        }
+    );
+})
+
+.delete(function(req, res){
+    //find and delete article title passed in params
+    Article.deleteOne(
+        {title: req.params.articleTitle},
+        function(err){
+            if(!err){
+                //if no errors respond with success message 
+                res.send("Successfully deleted article");
+            } else {
+                //respond with error message 
+                res.send(err);
             }
         }
     );
